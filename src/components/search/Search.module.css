@@ -1,0 +1,16 @@
+.search {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.search h2 {
+  color: white;
+}
+
+.search input {
+  width: 90%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 0.3rem;
+}

@@ -10,14 +10,19 @@ body {
   margin: 0;
 }
 
+main {
+  text-align: center;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
+  border: none;
   font-size: 1rem;
   font-weight: 600;
-  background-color: transparent;
+  background-color: #ff213f;
   color: white;
   border-color: 1px solid white;
 }
