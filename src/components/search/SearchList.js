@@ -8,6 +8,7 @@ const SearchList = props => {
   const { isLoading, error, sendRequest } = useFetch();
 
   useEffect(() => {
+    const searchQueryIsEmpty = props.searchQuery === "";
     const transformData = fetchedData => {
       const coinsList = fetchedData.coins;
       const topCoinsArray = [];
@@ -15,24 +16,37 @@ const SearchList = props => {
       coinsList.forEach(coin => {
         topCoinsArray.push({
           id: coin.item.id,
-          icon: coin.item.icon,
+          thumbnail: searchQueryIsEmpty ? coin.item.thumb : "",
           name: coin.item.name,
           symbol: coin.item.symbol,
-          rank: coin.item.rank,
+          rank: searchQueryIsEmpty ? coin.item.market_cap_rank : "",
         });
       });
 
-      setLoadedList(topCoinsArray);
+      if (searchQueryIsEmpty) {
+        setLoadedList(topCoinsArray);
+      } else {
+        console.log(topCoinsArray);
+      }
     };
 
-    sendRequest(
-      { url: "https://api.coingecko.com/api/v3/search/trending" },
-      transformData
-    );
-  }, [sendRequest]);
+    if (searchQueryIsEmpty) {
+      sendRequest(
+        { url: "https://api.coingecko.com/api/v3/search/trending" },
+        transformData
+      );
+    } else {
+      sendRequest(
+        {
+          url: "https://api.coingecko.com/api/v3/coins/list?include_platform=false",
+        },
+        transformData
+      );
+    }
+  }, [sendRequest, props.searchQuery]);
 
   return (
-    <div className={classes.box} /* onClick={clickedInSearchListHandler} */>
+    <div className={classes.box}>
       <ul>
         {loadedList.map(coin => {
           return <SearchItem key={coin.id} coin={coin} />;

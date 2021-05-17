@@ -17,7 +17,7 @@ const useFetch = () => {
       if (!res.ok) throw new Error("Request Failed!");
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
       applyData(data);
     } catch (err) {

@@ -1,26 +1,22 @@
-import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { searchActions } from "../../store/search-slice";
-import { useItemOnScreen } from "../../hooks/useItemOnScreen";
+import { useState } from "react";
+import useComponentVisible from "../../hooks/useComponentVisible";
 import Card from "../UI/Card";
 import SearchList from "./SearchList";
 import classes from "./Search.module.css";
-import { bindActionCreators } from "redux";
 
 const Search = props => {
-  // TODO For next time you work on this, try attempting to move your reference to your search list clicks to the search list. Was getting a refs cannot be added to Components. Adding this to the main outside div inside of our SearchList component along with passing state up to this component that represnts the list being currently on the page should be a  fix to this issue while allowing you to make sure that the search list of coins stays open when clicked on. As opposed to it just treating the search list click as an on blur event only.
-  const searchList = useRef();
-  console.log(searchList.current);
-  // const onScreen = useItemOnScreen(searchList);
-  const { searchBarStatus } = useSelector(state => state.search);
-  const dispatch = useDispatch();
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const toggleSearchHandler = e => {
-    if (e.target.className === "input") console.log("Hello");
-    dispatch(searchActions.toggleSearchBar());
+  const setSearchToVisible = () => {
+    setIsComponentVisible(true);
   };
 
-  // console.log(onScreen);
+  const updateSearchResults = e => {
+    setSearchQuery(e.target.value);
+  };
+  // console.log(searchQuery);
 
   return (
     <Card>
@@ -30,10 +26,15 @@ const Search = props => {
           className="input"
           type="text"
           placeholder="Search.."
-          onFocus={toggleSearchHandler}
-          onBlur={toggleSearchHandler}
+          onClick={setSearchToVisible}
+          onChange={updateSearchResults}
+          value={searchQuery}
         />
-        {searchBarStatus && <SearchList ref={searchList} />}
+        {isComponentVisible && (
+          <div ref={ref}>
+            <SearchList searchQuery={searchQuery} />
+          </div>
+        )}
       </div>
     </Card>
   );

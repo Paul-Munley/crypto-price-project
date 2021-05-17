@@ -1,10 +1,14 @@
+import classes from "./SearchItem.module.css";
+
 const SearchItem = props => {
   return (
     <li>
-      <span>{props.coin.icon}</span>
-      <span>{props.coin.name}</span>
-      <span>{props.coin.symbol}</span>
-      <span>{props.coin.rank}</span>
+      <a>
+        <img src={props.coin.thumbnail} />
+        <div className={classes.name}>{props.coin.name}</div>
+        <div className={classes.symbol}>{`(${props.coin.symbol})`}</div>
+        <div className={classes.rank}>{`#${props.coin.rank}`}</div>
+      </a>
     </li>
   );
 };
