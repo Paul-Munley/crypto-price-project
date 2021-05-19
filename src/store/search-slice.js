@@ -1,24 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  searchBarStatus: false,
-  clickOutsideOfSearch: false,
+  coinSearchArray: [],
 };
 
 const searchSlice = createSlice({
   name: "search slice",
   initialState,
   reducers: {
-    turnOnSearchBar(state) {
-      state.searchBarStatus = true;
-    },
-    turnOffSearchBar(state) {
-      if (state.searchBarStatus === true) {
-        state.searchBarStatus = false;
-      }
-    },
-    toggleSearchBar(state) {
-      state.searchBarStatus = !state.searchBarStatus;
+    setTrendingSearchResults(state, action) {
+      state.coinSearchArray = action.payload.coinSearchArray;
     },
   },
 });
