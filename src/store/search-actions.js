@@ -1,6 +1,7 @@
 import { searchActions } from "./search-slice";
 
 const transformDataAndPush = (data, coinsArray, showTrending) => {
+  // Will show trending results onClick into search bar
   if (showTrending) {
     data.forEach(coin =>
       coinsArray.push({
@@ -13,17 +14,14 @@ const transformDataAndPush = (data, coinsArray, showTrending) => {
     );
   }
 
+  // Will not show trending results if typing in search bar to dynamically show search results
   if (!showTrending) {
     const shortsAndLongs = new RegExp(/\d.{0,3}[X]/);
     const aaveCoins = new RegExp(/(Aave) .{1,}/);
-    const theMainBitcoins =
-      /(Bitcoin Cash)/ && /(Bitcoin Gold)/ && /(Bitcoin SV)/;
 
     data
       .filter(
-        coin =>
-          (!shortsAndLongs.test(coin.name) && !aaveCoins.test(coin.name)) ||
-          !theMainBitcoins.test(coin.name)
+        coin => !shortsAndLongs.test(coin.name) && !aaveCoins.test(coin.name)
       )
       .forEach(coin => {
         coinsArray.push({
@@ -57,19 +55,38 @@ export const fetchSearchResults = (showTrending = true) => {
         ? transformDataAndPush(data.coins, coinsArray, true)
         : transformDataAndPush(data, coinsArray, false);
 
-      console.log(coinsArray);
-      return coinsArray;
+      console.log("Fetch Initiated");
+      return {
+        coinsArray,
+        showTrending,
+      };
     };
 
     try {
-      const transformedArr = await fetchAndHandleData();
-      dispatch(
-        searchActions.setTrendingSearchResults({
-          coinSearchArray: transformedArr,
-        })
-      );
+      const { coinsArray, showTrending } = await fetchAndHandleData();
+      if (showTrending === true) {
+        dispatch(
+          searchActions.setTrendingResults({
+            coinSearchArray: coinsArray,
+          })
+        );
+      } else {
+        dispatch(
+          searchActions.setSearchResults({
+            coinSearchArray: coinsArray,
+          })
+        );
+      }
     } catch (err) {
       console.log(err.message);
     }
   };
 };
+
+// export const dynamicSearchFilter = (coinSearchArray, searchQuery) => {
+//   return dispatch => {
+//     const filteredArray = coinSearchArray.filter(coin =>
+//       coin.name.includes(searchQuery)
+//     );
+//   };
+// };

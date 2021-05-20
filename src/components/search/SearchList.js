@@ -9,18 +9,20 @@ import SearchItem from "./SearchItem";
 
 const SearchList = props => {
   const dispatch = useDispatch();
-  const { coinSearchArray } = useSelector(state => state.search);
-  const searchFieldEmpty = props.searchQuery === "";
-  console.log(searchFieldEmpty);
+  const { trendingSearchArray, coinSearchArray, filteredArray, searchQuery } =
+    useSelector(state => state.search);
+  const searchFieldEmpty = searchQuery === "";
 
   useEffect(() => {
-    if (searchFieldEmpty) {
+    if (searchFieldEmpty && trendingSearchArray.length === 0) {
       dispatch(fetchSearchResults(true));
     }
-    if (!searchFieldEmpty) {
+    if (!searchFieldEmpty && coinSearchArray.length === 0) {
       dispatch(fetchSearchResults(false));
     }
   }, [searchFieldEmpty]);
+
+  useEffect(() => {});
 
   console.log(coinSearchArray);
 
@@ -28,15 +30,11 @@ const SearchList = props => {
     <div className={classes.box}>
       {
         <ul>
-          {coinSearchArray.map(coin => {
-            return (
-              <SearchItem
-                key={coin.id}
-                coin={coin}
-                searchQuery={props.searchQuery}
-              />
-            );
-          })}
+          {(searchFieldEmpty ? trendingSearchArray : filteredArray).map(
+            coin => {
+              return <SearchItem key={coin.id} coin={coin} />;
+            }
+          )}
         </ul>
       }
     </div>

@@ -1,7 +1,9 @@
+import { useSelector, useDispatch } from "react-redux";
 import classes from "./SearchItem.module.css";
 
 const SearchItem = props => {
-  const searchFieldEmpty = props.searchQuery === "";
+  const { searchQuery } = useSelector(state => state.search);
+  const searchFieldEmpty = searchQuery === "";
 
   return (
     <li>
