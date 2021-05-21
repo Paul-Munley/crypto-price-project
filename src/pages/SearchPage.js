@@ -7,7 +7,7 @@ const SearchPage = () => {
   return (
     <Fragment>
       <Search />
-      <Route path={"/:quoteId"}>
+      <Route path={"/:coinId"}>
         <CoinDetailPage />
       </Route>
     </Fragment>
