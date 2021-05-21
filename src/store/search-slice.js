@@ -5,6 +5,7 @@ const initialState = {
   coinSearchArray: [],
   filteredArray: [],
   searchQuery: "",
+  searchVisiblility: false,
 };
 
 const searchSlice = createSlice({
@@ -25,6 +26,9 @@ const searchSlice = createSlice({
       state.filteredArray = state.coinSearchArray.filter(coin =>
         coin.name.toLowerCase().includes(state.searchQuery.toLowerCase())
       );
+    },
+    toggleSearch(state) {
+      state.searchVisiblility = !state.searchVisiblility;
     },
   },
 });

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { searchActions } from "../../store/search-slice";
 import useComponentVisible from "../../hooks/useComponentVisible";
 import Card from "../UI/Card";
@@ -7,13 +8,15 @@ import SearchList from "./SearchList";
 import classes from "./Search.module.css";
 
 const Search = props => {
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false);
+  const { ref } = useComponentVisible();
   const dispatch = useDispatch();
-  const { searchQuery } = useSelector(state => state.search);
+  const { searchQuery, searchVisiblility } = useSelector(state => state.search);
+  const location = useLocation();
+
+  console.log(location);
 
   const setSearchToVisible = () => {
-    setIsComponentVisible(true);
+    dispatch(searchActions.toggleSearch());
   };
 
   const updateSearchResults = e => {
@@ -27,7 +30,6 @@ const Search = props => {
     }),
     [searchQuery]
   );
-
   console.log(searchQuery);
 
   // useEffect(() => {
@@ -46,7 +48,7 @@ const Search = props => {
           onClick={setSearchToVisible}
           onChange={updateSearchResults}
         />
-        {isComponentVisible && (
+        {searchVisiblility && (
           <div ref={ref}>
             <SearchList />
           </div>

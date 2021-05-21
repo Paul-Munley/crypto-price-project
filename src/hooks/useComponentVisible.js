@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store/search-slice";
 
-export default function useComponentVisible(initialIsVisible) {
-  const [isComponentVisible, setIsComponentVisible] =
-    useState(initialIsVisible);
+export default function useComponentVisible() {
+  const dispatch = useDispatch();
+  // const [isComponentVisible, setIsComponentVisible] =
+  //   useState(initialIsVisible);
   const ref = useRef(null);
 
   const handleClickOutside = event => {
@@ -11,7 +14,7 @@ export default function useComponentVisible(initialIsVisible) {
       !ref.current.contains(event.target) &&
       event.target.className !== "input"
     ) {
-      setIsComponentVisible(false);
+      dispatch(searchActions.toggleSearch());
     }
   };
 
@@ -22,5 +25,5 @@ export default function useComponentVisible(initialIsVisible) {
     };
   });
 
-  return { ref, isComponentVisible, setIsComponentVisible };
+  return { ref };
 }

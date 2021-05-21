@@ -1,0 +1,6 @@
+.container {
+  height: 25rem;
+  max-width: 90%;
+  margin: auto;
+  background-color: coral;
+}

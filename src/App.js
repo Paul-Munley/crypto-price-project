@@ -25,8 +25,8 @@ function App() {
       <MainHeader />
       <main>
         <Switch>
-          <Route exact path="/">
-            <SearchPage /* onClick={clickHandler} */ />
+          <Route path="/">
+            <SearchPage />
           </Route>
           <Route exact path="*">
             <NotFound />
