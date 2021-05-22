@@ -16,8 +16,10 @@ const CoinDetailPage = () => {
 
       const data = await res.json();
 
-      console.log(data);
-      setCoinData(data);
+      // console.log(data.DISPLAY[clickedCoin].USD);
+      // console.log(USD);
+
+      setCoinData(data.RAW);
     };
     fetchCoinData();
   }, [params]);
