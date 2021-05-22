@@ -4,27 +4,41 @@ import CoinInfo from "../components/coin/CoinInfo";
 
 const CoinDetailPage = () => {
   const params = useParams();
+  let clickedCoin = params.coinId.toLowerCase().replace(" ", "");
+  console.log(clickedCoin);
+  if (clickedCoin === "usdcoin") {
+    clickedCoin = clickedCoin.slice(0, 3) + "-coin";
+  }
+  if (clickedCoin === "xrp") {
+    clickedCoin = "ripple";
+  }
   const [coinData, setCoinData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(coinData);
 
   useEffect(() => {
     const fetchCoinData = async () => {
       const res = await fetch(
-        `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${params.coinId}&tsyms=USD&api_key={530d7cc00ed72b234a8773ce5300315f48a4308d547f786e9d630c8ce17ad859}`
+        `https://api.coingecko.com/api/v3/coins/${clickedCoin}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=true&sparkline=true
+        `
       );
+
+      console.log(res);
 
       // 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=MAID&tsyms=USD,EUR'
 
       const data = await res.json();
 
-      // console.log(data.DISPLAY[clickedCoin].USD);
+      console.log(data);
       // console.log(USD);
 
-      setCoinData(data.RAW);
+      setCoinData(data);
+      setIsLoading(false);
     };
     fetchCoinData();
   }, [params]);
 
-  return <CoinInfo coinData={coinData} />;
+  return !isLoading && <CoinInfo name={coinData.name} />;
 };
 
 export default CoinDetailPage;
