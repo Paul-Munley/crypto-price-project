@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { APIStringTransformer } from "../helpers/api-string-transformer";
 import CoinInfo from "../components/coin/CoinInfo";
 
 const CoinDetailPage = () => {
   const params = useParams();
-  let clickedCoin = params.coinId.toLowerCase().replace(" ", "");
+  const clickedCoin = params.coinId.toLowerCase().replace(" ", "");
+  const convertedCoin = APIStringTransformer(clickedCoin);
+
   console.log(clickedCoin);
-  if (clickedCoin === "usdcoin") {
-    clickedCoin = clickedCoin.slice(0, 3) + "-coin";
-  }
-  if (clickedCoin === "xrp") {
-    clickedCoin = "ripple";
-  }
+
   const [coinData, setCoinData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   console.log(coinData);
@@ -19,7 +17,7 @@ const CoinDetailPage = () => {
   useEffect(() => {
     const fetchCoinData = async () => {
       const res = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${clickedCoin}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=true&sparkline=true
+        `https://api.coingecko.com/api/v3/coins/${convertedCoin}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=true&sparkline=true
         `
       );
 
@@ -38,7 +36,9 @@ const CoinDetailPage = () => {
     fetchCoinData();
   }, [params]);
 
-  return !isLoading && <CoinInfo name={coinData.name} />;
+  return (
+    !isLoading && <CoinInfo name={coinData.name} img={coinData.image.large} />
+  );
 };
 
 export default CoinDetailPage;

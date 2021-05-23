@@ -17,6 +17,7 @@ const CoinInfo = props => {
   return (
     <div className={classes.container}>
       <div>
+        <img src={props.img} />
         <h3>{props.name}</h3>
       </div>
       {/* <LoadingSpinner /> */}
