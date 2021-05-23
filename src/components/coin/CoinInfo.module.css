@@ -2,5 +2,22 @@
   height: 25rem;
   max-width: 90%;
   margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   background-color: coral;
+}
+
+.coinNameAndLogo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.coinNameAndLogo p {
+  display: block;
+}
+
+.container div {
+  margin: 2rem 1rem;
 }

@@ -37,7 +37,15 @@ const CoinDetailPage = () => {
   }, [params]);
 
   return (
-    !isLoading && <CoinInfo name={coinData.name} img={coinData.image.large} />
+    !isLoading && (
+      <CoinInfo
+        name={coinData.name}
+        symbol={coinData.symbol}
+        img={coinData.image.large}
+        convertedLast={coinData.tickers[0].converted_last.usd}
+        rank={coinData.market_cap_rank}
+      />
+    )
   );
 };
 
