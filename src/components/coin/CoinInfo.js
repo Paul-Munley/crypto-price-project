@@ -18,8 +18,11 @@ const CoinInfo = props => {
     <div className={classes.container}>
       <div className={classes.coinNameAndLogo}>
         <img height="130" width="130" src={props.img} />
-        <h3>{`${props.name} (${props.symbol.toUpperCase()})`}</h3>
-        <div>{props.rank}</div>
+        <div className={classes.nameAndRank}>
+          <p>{`${props.name} (${props.symbol.toUpperCase()})`}</p>
+          <div className={classes.break}></div>
+          <p className={classes.rank}>{`Rank: ${props.rank}`}</p>
+        </div>
       </div>
       <div>
         <p>{``}</p>
