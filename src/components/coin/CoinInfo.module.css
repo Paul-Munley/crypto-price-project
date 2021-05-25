@@ -1,5 +1,5 @@
 .container {
-  height: 25rem;
+  height: 15rem;
   width: 90%;
   max-width: 40rem;
   margin: auto;
@@ -14,14 +14,16 @@
 }
 
 .nameAndRank {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-items: flex-start;
-  margin: 1rem 1rem;
+  margin: 0 1rem;
 }
 
 .nameAndRank p {
   width: 100%;
+  text-align: left;
   display: flex;
   margin: 0;
 }

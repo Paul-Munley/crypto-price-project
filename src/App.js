@@ -6,6 +6,7 @@ import Layout from "./layout/Layout";
 import MainHeader from "./components/MainHeader";
 import NotFound from "./pages/NotFound";
 import SearchPage from "./pages/SearchPage";
+import Footer from "./components/Footer";
 
 function App() {
   // const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </Layout>
   );
 }

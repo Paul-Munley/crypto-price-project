@@ -7,13 +7,6 @@ import CoinPrices from "./CoinPrices";
 const CoinInfo = props => {
   const params = useParams();
   const clickedCoin = params.coinId;
-  // console.log(clickedCoin);
-  // console.log(props.coinData[clickedCoin].USD.FROMSYMBOL);
-  // console.log(props.coinData[clickedCoin].USD.FROMSYMBOL);
-
-  // useEffect(() => {
-  //   console.log(props.coinData[clickedCoin].USD.FROMSYMBOL);
-  // }, []);
 
   return (
     <div className={classes.container}>
@@ -34,7 +27,6 @@ const CoinInfo = props => {
         currentPriceETH={props.currentPriceETH}
         percentageChangeETH={props.percentageChangeETH}
       />
-      {/* <LoadingSpinner /> */}
     </div>
   );
 };

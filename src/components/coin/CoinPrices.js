@@ -82,7 +82,7 @@ const CoinPrices = props => {
         </div>
       </div>
       <div className={classes.percentChangeCryptos}>
-        <p>{`$${
+        <p>{`${
           lessThanWholeNumETH
             ? props.currentPriceETH
                 .toFixed(4)
@@ -90,7 +90,7 @@ const CoinPrices = props => {
             : props.currentPriceETH
                 .toFixed(2)
                 .toLocaleString("en-US", { minimumFractionDigits: 2 })
-        }`}</p>
+        } ETH`}</p>
         <div className={classes.percentChangeCryptos}>
           {!neutralPercentETH && (
             <img

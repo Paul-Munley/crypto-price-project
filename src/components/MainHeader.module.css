@@ -12,6 +12,12 @@
   justify-content: space-between;
 }
 
-.header h1 {
+.navLink {
+  text-decoration: inherit;
   color: white;
+}
+
+.navLink:hover {
+  text-decoration: inherit;
+  background-color: inherit;
 }
