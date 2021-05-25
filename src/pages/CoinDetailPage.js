@@ -42,8 +42,17 @@ const CoinDetailPage = () => {
         name={coinData.name}
         symbol={coinData.symbol}
         img={coinData.image.large}
-        convertedLast={coinData.tickers[0].converted_last.usd}
         rank={coinData.market_cap_rank}
+        currentPriceUSD={coinData.market_data.current_price.usd}
+        percentageChangeUSD={coinData.market_data.price_change_percentage_24h}
+        currentPriceBTC={coinData.market_data.current_price.btc}
+        percentageChangeBTC={
+          coinData.market_data.price_change_percentage_24h_in_currency.btc
+        }
+        currentPriceETH={coinData.market_data.current_price.eth}
+        percentageChangeETH={
+          coinData.market_data.price_change_percentage_24h_in_currency.eth
+        }
       />
     )
   );

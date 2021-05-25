@@ -1,0 +1,78 @@
+.currentPrices {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: 2rem 1rem;
+}
+
+.currentPrices p {
+  text-align: right;
+  margin: 0.5rem 0;
+}
+
+.currentPricesLabel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.priceUSD {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.priceUSD p {
+  margin: 0 0.25rem;
+}
+
+.percentChangeUSD {
+  width: max-content;
+  display: flex;
+  text-align: center;
+  padding: 0.35rem 0.45rem;
+  border-radius: 8px;
+  background-color: #16c784;
+}
+
+.percentChangeUSD.positive {
+  background-color: #16c784;
+}
+
+.percentChangeUSD.negative {
+  background-color: #ea3943;
+}
+
+.percentChangeUSD.neutral {
+  background-color: white;
+}
+
+.percentChangeUSD img {
+  margin-right: 0.1rem;
+}
+
+.priceCryptos {
+  display: inline-flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.percentChangeCryptos {
+  display: inline-flex;
+  align-items: center;
+}
+
+.percentChangeCryptos img {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+.positivePercent {
+  color: #16c784;
+}
+
+.negativePercent {
+  color: #ea3943;
+}
