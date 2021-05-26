@@ -128,5 +128,8 @@ export const APIStringTransformer = clickedCoin => {
   if (clickedCoin === "ankrnetwork") {
     clickedCoin = clickedCoin.slice(0, 4);
   }
+  if (clickedCoin === "internetcomputer") {
+    clickedCoin = "internet-computer";
+  }
   return clickedCoin;
 };
