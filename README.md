@@ -1,3 +1,3 @@
-# Minimalist Top Cryptocurrencies Price Lookup :detective:
+# Minimalist Top Cryptocurrency Price Lookup :detective:
 
 This is a minimalist SPA that allows you to see the top cryptocurrencies and their current prices in USD, BTC, ETH. This page uses React, Redux, and React Router to accomplish this. It has a dynamic search bar that will change the search results based off what the user is typing. Once a cryptocurrency is clicked it will route to the detail page for that specific cryptocurrency. This site uses HTTP GET Requests from CryptoCompare to show the search results with the cryptocurrencies logos and also uses HTTP GET Requests from CoinGecko to display the specific cryptocurrency details effectively.  
