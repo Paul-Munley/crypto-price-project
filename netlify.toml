@@ -1,0 +1,6 @@
+# Create-react-app redirect rule
+[[redirects]]
+  from = '/*'
+  to = '/index.html'
+  status = 200
+

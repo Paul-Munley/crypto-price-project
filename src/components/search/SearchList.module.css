@@ -1,0 +1,17 @@
+.box {
+  height: 15rem;
+  width: 90%;
+  position: absolute;
+  overflow: scroll;
+  margin-top: 0.15rem;
+  left: 5%;
+  z-index: 1;
+  border: 0.2px solid #3c4146;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.box ul {
+  padding: 0;
+  margin: 0;
+}
